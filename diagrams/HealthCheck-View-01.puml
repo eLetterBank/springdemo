@@ -1,9 +1,12 @@
 @startuml
-title Helth Check API Usage - View 1
+title View 1 - Solution View - E.g.: Helth Check API Usage
 
 actor user
 participant Browser as bw
+
+box "Service Layer" #LightBlue
 participant "System" as hChekApi
+end box
 
 skinparam sequence {
     ActorFontName Arial
@@ -21,7 +24,7 @@ activate bw
 
 bw->hChekApi: Send Request \n - HealthCheckQuery \n - URI = /api/v1/hchk
 activate hChekApi
-hChekApi-->bw:Receive Response \n - HealthCheckQueryResult \n --Content = "Ping with Server Date & Time" \n --Status Code = 0
+hChekApi-->bw:Receive Response \n - HealthCheckQueryResult \n --Content = "Ping with server Date & Time" \n --Status Code = 0
 deactivate hChekApi
 destroy hChekApi
 

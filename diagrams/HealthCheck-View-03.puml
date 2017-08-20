@@ -1,11 +1,13 @@
 @startuml
-title Helth Check API Usage - View 1
+title View 3 - Handler Component View - E.g.: Helth Check API Usage
 
+box "Service Layer" #LightBlue
 participant "HealthCheck Controller" as hChekApiController
 
 participant "HealthCheck Handler" as hChekApiHndlr
 participant "HealthCheck Data Repo" as hChekApiDataRepo
 participant "HealthCheck Service Repo" as hChekApiSvcRepo
+end box
 
 skinparam sequence {
     ActorFontName Arial

@@ -1,11 +1,13 @@
 @startuml
-title Helth Check API Usage - View 1
+title View 2 - Pipeline Component View - E.g.: Helth Check API Usage
 
 participant Browser as bw
 
+box "Service Layer" #LightBlue
 participant "Authentication Pc" as authApiFilter
 participant "Audit Pc" as auditApiIntercepter
 participant "HealthCheck Controller" as hChekApiController
+end box
 
 skinparam sequence {
     ActorFontName Arial
@@ -18,7 +20,7 @@ skinparam sequence {
     ArrowFontSize 11
 }
 
-bw->authApiFilter: Receive request \n- [...]Query \n- [...]Command
+bw->authApiFilter: Receive request \n    - [...]Query \n    - [...]Command
 activate authApiFilter
 
 authApiFilter->auditApiIntercepter: Handover request
@@ -36,7 +38,7 @@ deactivate hChekApiController
 activate auditApiIntercepter
 
 auditApiIntercepter->auditApiIntercepter: Audit response
-auditApiIntercepter-->bw: Return response\n- [...]QueryResult \n- [...]CommandResult
-destroy auditApiIntercepter
+                           auditApiIntercepter-->bw: Return response\n-    [...]QueryResult \n-    [...]CommandResult
+                           destroy auditApiIntercepter
 
 @enduml
