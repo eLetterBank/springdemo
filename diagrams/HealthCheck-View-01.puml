@@ -1,5 +1,5 @@
 @startuml
-title View 1 - Solution View - E.g.: Helth Check API Usage
+title View 1 - Solution View \nE.g.: Helth Check API Usage
 
 actor user
 participant Browser as bw

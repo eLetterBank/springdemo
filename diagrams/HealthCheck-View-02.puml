@@ -1,11 +1,14 @@
 @startuml
-title View 2 - Pipeline Component View - E.g.: Helth Check API Usage
+title View 2 - Pipeline Component View \nE.g.: Helth Check API Usage
 
 participant Browser as bw
 
-box "Service Layer" #LightBlue
+box "Pipeline Components" #LightBlue
 participant "Authentication Pc" as authApiFilter
 participant "Audit Pc" as auditApiIntercepter
+end box
+
+box "Controller"
 participant "HealthCheck Controller" as hChekApiController
 end box
 

@@ -1,10 +1,15 @@
 @startuml
-title View 3 - Handler Component View - E.g.: Helth Check API Usage
+title View 3 - Handler Component View \nE.g.: Helth Check API Usage
 
-box "Service Layer" #LightBlue
+box "Controller"
 participant "HealthCheck Controller" as hChekApiController
+end box
 
+box "Handler Component" #PerlWhite
 participant "HealthCheck Handler" as hChekApiHndlr
+end box
+
+box "Repository" #BBCCFF
 participant "HealthCheck Data Repo" as hChekApiDataRepo
 participant "HealthCheck Service Repo" as hChekApiSvcRepo
 end box
