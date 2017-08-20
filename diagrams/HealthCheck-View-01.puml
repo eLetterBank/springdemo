@@ -1,0 +1,31 @@
+@startuml
+title Helth Check API Usage - View 1
+
+actor user
+participant Browser as bw
+participant "System" as hChekApi
+
+skinparam sequence {
+    ActorFontName Arial
+    ActorFontSize 11
+
+    ParticipantFontName Arial
+    ParticipantFontSize 11
+
+    ArrowFontName Arial
+    ArrowFontSize 11
+}
+
+user->bw: Access the site
+activate bw
+
+bw->hChekApi: Send Request \n - HealthCheckQuery \n - URI = /api/v1/hchk
+activate hChekApi
+hChekApi-->bw:Receive Response \n - HealthCheckQueryResult \n --Content = "Ping with Server Date & Time" \n --Status Code = 0
+deactivate hChekApi
+destroy hChekApi
+
+bw-->user: Display Message
+deactivate bw
+
+@enduml

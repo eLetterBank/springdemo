@@ -1,0 +1,52 @@
+@startuml
+title Sequence Diagram Notations
+
+actor user
+participant Staff as Alice
+participant System as Bob
+
+skinparam sequence {
+    ActorFontName Arial
+    ActorFontSize 11
+
+    ParticipantFontName Arial
+    ParticipantFontSize 11
+
+    ArrowFontName Arial
+    ArrowFontSize 11
+}
+
+user -> Alice: Hai!
+activate Alice
+
+Alice->Bob: Authentication Request
+activate Bob
+Bob-->Alice: Authentication Response
+deactivate Bob
+
+note left of Bob
+    This is a sample text
+end note
+
+alt Option 1
+    Bob->Alice: Another authentication Request
+    activate Alice
+    Bob <-- Alice: another authentication Response
+    deactivate Alice
+else Option 2
+    Alice->Bob: Authentication Request
+    activate Bob
+    Bob-->Alice: Authentication Response
+    deactivate Bob
+end alt
+
+loop 1.10
+    Alice->>Bob: Ping
+    activate Bob
+    Bob-->Alice: Alive
+    deactivate Bob
+end loop
+
+Alice-->user
+deactivate Alice
+@enduml

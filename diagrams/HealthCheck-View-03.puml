@@ -1,0 +1,23 @@
+@startuml
+title Helth Check API Usage - View 1
+
+participant "HealthCheck Controller" as hChekApiController
+
+participant "HealthCheck Handler" as hChekApiHndlr
+participant "HealthCheck Data Repo" as hChekApiDataRepo
+participant "HealthCheck Service Repo" as hChekApiSvcRepo
+
+skinparam sequence {
+    ActorFontName Arial
+    ActorFontSize 11
+
+    ParticipantFontName Arial
+    ParticipantFontSize 11
+
+    ArrowFontName Arial
+    ArrowFontSize 11
+}
+
+
+
+@enduml

@@ -1,0 +1,42 @@
+@startuml
+title Helth Check API Usage - View 1
+
+participant Browser as bw
+
+participant "Authentication Pc" as authApiFilter
+participant "Audit Pc" as auditApiIntercepter
+participant "HealthCheck Controller" as hChekApiController
+
+skinparam sequence {
+    ActorFontName Arial
+    ActorFontSize 11
+
+    ParticipantFontName Arial
+    ParticipantFontSize 11
+
+    ArrowFontName Arial
+    ArrowFontSize 11
+}
+
+bw->authApiFilter: Receive request \n- [...]Query \n- [...]Command
+activate authApiFilter
+
+authApiFilter->auditApiIntercepter: Handover request
+destroy authApiFilter
+activate auditApiIntercepter
+
+auditApiIntercepter->auditApiIntercepter: Audit request
+auditApiIntercepter->hChekApiController: Handover request
+destroy auditApiIntercepter
+activate hChekApiController
+hChekApiController->hChekApiController: Process the request
+
+hChekApiController-->auditApiIntercepter: Return response
+deactivate hChekApiController
+activate auditApiIntercepter
+
+auditApiIntercepter->auditApiIntercepter: Audit response
+auditApiIntercepter-->bw: Return response\n- [...]QueryResult \n- [...]CommandResult
+destroy auditApiIntercepter
+
+@enduml
