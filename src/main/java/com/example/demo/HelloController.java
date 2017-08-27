@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
     @RequestMapping("/")
     public String healthCheck() {
-        return "Ping from Hello API!";
+        return "Ping from HelloController:healthCheck!";
     }
 }

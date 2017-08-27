@@ -44,12 +44,12 @@ public class DemoApplication extends SpringBootServletInitializer {
 	}
 
 	@EnableWebMvc
-	@ComponentScan(basePackages = {"com.springdemo"})
-	@Configuration
+    @ComponentScan(basePackages = {"com.example"})
+    @Configuration
 	public class WebConfig extends WebMvcConfigurerAdapter {
 		/**
-		 * Enable CORS
-		 */
+         * Enable Cross-Origin Resource Sharing (CORS)
+         */
 		@Override
 		public void addCorsMappings(CorsRegistry registry) {
 			registry.addMapping("/**");
