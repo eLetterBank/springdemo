@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/card/v1")
 public class CardController {
-    private static final Logger logger = LogManager.getLogger(HealthController.class);
+    private static final Logger logger = LogManager.getLogger(CardController.class);
 
     @GetMapping(value="/chk")
     public String checkCardType(String cardNo)
