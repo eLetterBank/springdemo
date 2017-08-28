@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.app;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

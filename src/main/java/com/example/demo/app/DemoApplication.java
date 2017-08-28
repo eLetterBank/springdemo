@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.app;
 
 import com.example.interceptors.audit.AuditInterceptor;
 import com.example.shared.models.AuditEvent;

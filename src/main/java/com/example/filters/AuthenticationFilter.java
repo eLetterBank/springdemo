@@ -1,6 +1,6 @@
 package com.example.filters;
 
-import com.example.demo.ApplicationProperties;
+import com.example.demo.app.ApplicationProperties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +18,10 @@ import java.io.IOException;
 import static com.example.shared.constants.Constant.CONTENT_TYPE;
 import static com.example.shared.constants.Constant.X_VSOLV_KEY;
 
-
 @Component
 public class AuthenticationFilter extends GenericFilterBean {
 
-    private static Logger filterLogger = LogManager.getLogger(AuthenticationFilter.class);
+    private final static Logger filterLogger = LogManager.getLogger(AuthenticationFilter.class);
 
     @Autowired
     private ApplicationProperties applicationProperties = null;
@@ -51,7 +50,7 @@ public class AuthenticationFilter extends GenericFilterBean {
             filterLogger.error(e);
 
             HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
-            httpResponse.setContentType("application/json");
+            httpResponse.setContentType(CONTENT_TYPE);
             httpResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.toString());
         }
     }
