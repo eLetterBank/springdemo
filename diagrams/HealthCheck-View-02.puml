@@ -1,15 +1,15 @@
 @startuml
-title View 2 - Pipeline Component View \nE.g.: Helth Check API Usage
+title View 2 - Pipeline Component View \nE.g.: Health Check API Usage
 
 participant Browser as bw
 
-box "Pipeline Components" #LightBlue
-participant "Authentication Pc" as authApiFilter
-participant "Audit Pc" as auditApiIntercepter
+box "Pipeline Components" #D9EDB7
+participant "AuthenticationFilter" as authApiFilter
+participant "AuditIntercepter" as auditApiIntercepter
 end box
 
 box "Controller"
-participant "HealthCheck Controller" as hChekApiController
+participant "HealthController" as hChekApiController
 end box
 
 skinparam sequence {
@@ -24,6 +24,7 @@ skinparam sequence {
 }
 
 bw->authApiFilter: Receive request \n    - [...]Query \n    - [...]Command
+activate bw
 activate authApiFilter
 
 authApiFilter->auditApiIntercepter: Handover request
@@ -31,17 +32,18 @@ destroy authApiFilter
 activate auditApiIntercepter
 
 auditApiIntercepter->auditApiIntercepter: Audit request
-auditApiIntercepter->hChekApiController: Handover request
+auditApiIntercepter->hChekApiController: Handover request\n - HealthCheckQuery
 destroy auditApiIntercepter
 activate hChekApiController
 hChekApiController->hChekApiController: Process the request
 
-hChekApiController-->auditApiIntercepter: Return response
+hChekApiController-->auditApiIntercepter: Return response\n - HealthCheckQueryResult
 deactivate hChekApiController
 activate auditApiIntercepter
 
 auditApiIntercepter->auditApiIntercepter: Audit response
-                           auditApiIntercepter-->bw: Return response\n-    [...]QueryResult \n-    [...]CommandResult
-                           destroy auditApiIntercepter
 
+auditApiIntercepter-->bw: Return response \n-    [...]QueryResult \n-    [...]CommandResult
+destroy auditApiIntercepter
+deactivate bw
 @enduml

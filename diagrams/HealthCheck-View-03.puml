@@ -1,17 +1,17 @@
 @startuml
-title View 3 - Handler Component View \nE.g.: Helth Check API Usage
+title View 3 - Handler Component View \nE.g.: Health Check API Usage
 
 box "Controller"
-participant "HealthCheck Controller" as hChekApiController
+participant "HealthController" as hChekApiController
 end box
 
-box "Handler Component" #PerlWhite
-participant "HealthCheck Handler" as hChekApiHndlr
+box "Handler Component" #B7EDDD
+participant "HealthCheckQueryHandler" as hChekApiHndlr
 end box
 
-box "Repository" #BBCCFF
-participant "HealthCheck Data Repo" as hChekApiDataRepo
-participant "HealthCheck Service Repo" as hChekApiSvcRepo
+box "Repository" #DFFFFF
+participant "HealthCheckDataRepo" as hChekApiDataRepo
+participant "HealthCheckServiceRepo" as hChekApiSvcRepo
 end box
 
 skinparam sequence {
@@ -25,6 +25,26 @@ skinparam sequence {
     ArrowFontSize 11
 }
 
+hChekApiController->hChekApiHndlr: Request
+activate hChekApiHndlr
 
+hChekApiHndlr->hChekApiDataRepo: Check DB Connection
+activate hChekApiDataRepo
+
+hChekApiDataRepo->hChekApiDataRepo:Check DB Status
+
+hChekApiDataRepo-->hChekApiHndlr: Return DB Status
+destroy hChekApiDataRepo
+
+hChekApiHndlr->hChekApiSvcRepo:Check External Service Status
+activate hChekApiSvcRepo
+
+hChekApiSvcRepo->hChekApiSvcRepo: Check Status
+
+hChekApiSvcRepo-->hChekApiHndlr: Return External Service Status
+destroy hChekApiSvcRepo
+
+hChekApiHndlr-->hChekApiController: Return status
+destroy hChekApiHndlr
 
 @enduml
